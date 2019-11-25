@@ -267,6 +267,9 @@ extension SafariViewController: WKNavigationDelegate {
         searchBars.text = url.absoluteString
         if url.absoluteString.isUrlFile() {
             NotificationCenter.default.post(name: Notification.Name.isUrlFile, object: nil, userInfo: ["url": url.absoluteString, "name": url.lastPathComponent])
+            
+            // Save History Here
+            
         }
         updateStateBarButtonItems()
     }
