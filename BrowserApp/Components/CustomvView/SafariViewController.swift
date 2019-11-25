@@ -248,6 +248,11 @@ extension SafariViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
     }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        guard let webView = webView else { return }
+        navigationItem.rightBarButtonItem = webView.isLoading ? self.stopBarButtonItem : self.reloadBarButtonItem
+    }
 }
 
 // MARK: - WKNavigationDelegate's Method
@@ -255,6 +260,11 @@ extension SafariViewController: UISearchBarDelegate {
 extension SafariViewController: WKNavigationDelegate {
     
     public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        guard let url = webView.url else { return }
+        searchBars.text = url.absoluteString
+        if url.absoluteString.isUrlFile() {
+            NotificationCenter.default.post(name: Notification.Name.isUrlFile, object: nil, userInfo: ["url": url.absoluteString, "name": url.lastPathComponent])
+        }
         updateStateBarButtonItems()
     }
     
