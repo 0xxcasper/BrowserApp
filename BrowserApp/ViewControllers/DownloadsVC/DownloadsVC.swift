@@ -12,13 +12,21 @@ class DownloadsVC: UIViewController {
     
     @IBOutlet weak var tbvDownload: UITableView!
     
-    var documentInteractionController: UIDocumentInteractionController?
-    var downloadTask: URLSessionDownloadTask?
-    var backgroundSession: URLSession?
+    private lazy var addBarButtonItem: UIBarButtonItem = {
+        return UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addDidClick))
+    }()
+    private lazy var editBarButtonItem: UIBarButtonItem = {
+        return UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editDidClick))
+    }()
+    
+    private var documentInteractionController: UIDocumentInteractionController?
+    private var downloadTasks = [URLSessionDownloadTask]()
+    private var backgroundSession: URLSession?
     
     private var downloads = [DownloadModel]()
     private var downloadings = [DownloadModel]()
-
+    private var isPause = false
+    
     deinit {
         NotificationCenter.default.removeObserver(self, name: Notification.Name.beginDownload, object: nil)
     }
@@ -34,14 +42,53 @@ class DownloadsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setUpView()
         setUpTableView()
+        showAllDocument()
+    }
+}
+
+// MARK: - Action's Method
+
+private extension DownloadsVC {
+    
+    @objc func addDidClick() {
+        let alert = UIAlertController(title: "Download URL", message: nil, preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.placeholder = "https://example.com"
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alert.addAction(cancelAction)
+        
+        let downloadAction = UIAlertAction(title: "Download", style: .default) { (UIAlertAction) in
+            let textField = alert.textFields![0]
+            
+            guard let text = textField.text, text.isUrlFile(), let url = URL(string: text) else { return }
+            self.downloadFile(documentUrl: url)
+        }
+        alert.addAction(downloadAction)
+        self.present(alert, animated: true, completion: nil)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        showAllFileSaved()
+    @objc func editDidClick() {
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let pauseAction = UIAlertAction(title: !isPause ? "Pause All" : "Resume All", style: .default) { (UIAlertAction) in
+            !self.isPause ? self.pauseAllTask() : self.resumeAllTask()
+        }
+        let deleteAction = UIAlertAction(title: "Delete All", style: UIAlertAction.Style.destructive) {
+            (UIAlertAction) in
+            FileManagerHelper.removeAllDocument()
+            self.downloads.removeAll()
+            self.reloadData()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        optionMenu.addAction(pauseAction)
+        optionMenu.addAction(deleteAction)
+        optionMenu.addAction(cancelAction)
+        self.present(optionMenu, animated: true, completion: nil)
     }
-
+    
     @objc func beginDownload(notification: Notification) {
         if let urlStr = notification.userInfo?["url"] as? String, let url = URL(string: urlStr) {
             downloadFile(documentUrl: url)
@@ -53,6 +100,35 @@ class DownloadsVC: UIViewController {
 
 private extension DownloadsVC {
     
+    func setUpView() {
+        navigationItem.title = "Download"
+        navigationItem.leftBarButtonItem = addBarButtonItem
+        navigationItem.rightBarButtonItem = editBarButtonItem
+    }
+    
+    func setUpTableView() {
+        tbvDownload.registerXibFile(DownloadTableViewCell.self)
+        tbvDownload.rowHeight = 45
+        tbvDownload.dataSource = self
+        tbvDownload.delegate = self
+    }
+    
+    func showAllDocument() {
+        downloads.removeAll()
+        for (index, content) in FileManagerHelper.getAllDocument().enumerated() {
+            downloads.append(DownloadModel( urlStr: content.absoluteString, name: content.lastPathComponent, progress: 100, indexP: IndexPath(row: index, section: 1)))
+        }
+        self.reloadData()
+    }
+    
+    func reloadData() {
+        if tbvDownload != nil {
+            DispatchQueue.main.async {
+                self.tbvDownload.reloadData()
+            }
+        }
+    }
+    
     func downloadFile(documentUrl: URL) {
         downloadings.append(DownloadModel(urlStr: documentUrl.absoluteString, name: documentUrl.lastPathComponent, progress: 0, indexP: IndexPath(row: downloadings.count, section: 0)))
         self.reloadData()
@@ -61,8 +137,11 @@ private extension DownloadsVC {
         backgroundSession = Foundation.URLSession(configuration: backgroundSessionConfiguration, delegate: self,
                                                   delegateQueue: OperationQueue.main)
         let request = URLRequest(url: documentUrl)
-        downloadTask = backgroundSession?.downloadTask(with: request)
-        downloadTask?.resume()
+        
+        if let downloadTask = backgroundSession?.downloadTask(with: request) {
+            downloadTasks.append(downloadTask)
+            if !isPause { downloadTask.resume() }
+        }
     }
     
     func openDocument(fileUrl: URL) {
@@ -78,25 +157,18 @@ private extension DownloadsVC {
         return docsURL
     }
     
-    func setUpTableView() {
-        tbvDownload.registerXibFile(DownloadTableViewCell.self)
-        tbvDownload.rowHeight = 42
-        tbvDownload.dataSource = self
-        tbvDownload.delegate = self
+    func pauseAllTask() {
+        isPause = true
+        downloadTasks.forEach({ (downloadTask) in
+            downloadTask.suspend()
+        })
     }
     
-    func showAllFileSaved() {
-        downloads.removeAll()
-        for (index, content) in FileManagerHelper.getAllDocument().enumerated() {
-            downloads.append(DownloadModel( urlStr: content.absoluteString, name: content.lastPathComponent, progress: 100, indexP: IndexPath(row: index, section: 1)))
-        }
-        self.reloadData()
-    }
-    
-    func reloadData() {
-        DispatchQueue.main.async {
-            self.tbvDownload.reloadData()
-        }
+    func resumeAllTask() {
+        isPause = false
+        downloadTasks.forEach({ (downloadTask) in
+            downloadTask.resume()
+        })
     }
 }
 
@@ -125,7 +197,7 @@ extension DownloadsVC: URLSessionDownloadDelegate {
 
         FileManagerHelper.removeDocument(fileUrl: destinationURL)
         FileManagerHelper.addDocument(fileUrl: destinationURL, location: location)
-        self.showAllFileSaved()
+        self.showAllDocument()
     }
 
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
@@ -149,6 +221,7 @@ extension DownloadsVC: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return section == 0 ? downloadings.count : downloads.count
     }
@@ -162,6 +235,17 @@ extension DownloadsVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1, let url = URL(string: downloads[indexPath.row].urlStr) {
             self.openDocument(fileUrl: url)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) && indexPath.section == 1  {
+            guard let url = URL(string: downloads[indexPath.row].urlStr) else { return }
+            self.tbvDownload.beginUpdates()
+            FileManagerHelper.removeDocument(fileUrl: url)
+            self.downloads.remove(at: indexPath.row)
+            self.tbvDownload.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+            self.tbvDownload.endUpdates()
         }
     }
 }
