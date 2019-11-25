@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MobileCoreServices
 
 class BrowserVC: SafariViewController {
 
@@ -18,6 +19,11 @@ class BrowserVC: SafariViewController {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(self.receivedNotificationIsURLFile(notification:)), name: Notification.Name.isUrlFile, object: nil)
         self.tabBarController?.tabBar.barTintColor = .white
+    }
+    
+    override func historyDidClick() {
+        let historyVC = UINavigationController(rootViewController: HistoryViewController())
+        self.present(historyVC, animated: true, completion: nil)
     }
     
     override func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -42,7 +48,7 @@ class BrowserVC: SafariViewController {
             }
             
             let copyAction = UIAlertAction(title: "Copy Link", style: UIAlertAction.Style.default) { (UIAlertAction) in
-                print(url)
+                self.copyToClipBoard(textToCopy: url)
             }
             
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -51,5 +57,10 @@ class BrowserVC: SafariViewController {
             optionMenu.addAction(cancelAction)
             self.present(optionMenu, animated: true, completion: nil)
         }
+    }
+    
+    private func copyToClipBoard(textToCopy: String) {
+        let pasteBoard = UIPasteboard.general
+        pasteBoard.setValue(textToCopy, forPasteboardType: kUTTypePlainText as String)
     }
 }

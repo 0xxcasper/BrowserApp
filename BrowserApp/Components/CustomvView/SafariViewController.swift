@@ -146,6 +146,9 @@ private extension SafariViewController {
         let toolBarItems = [backBarButtonItem, flexibleSpaceBarButtonItem ,forwardBarButtonItem, flexibleSpaceBarButtonItem, flexibleSpaceBarButtonItem, flexibleSpaceBarButtonItem ,flexibleSpaceBarButtonItem, historyBarButtonItem, flexibleSpaceBarButtonItem ,activityBarButtonItem]
         
         setToolbarItems(toolBarItems, animated: true)
+        
+        backBarButtonItem.isEnabled = false
+        forwardBarButtonItem.isEnabled = false
     }
     
     func setUpStateAndColor() {

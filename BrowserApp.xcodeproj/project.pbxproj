@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84067276238BD72A001B4C90 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84067274238BD72A001B4C90 /* HistoryViewController.swift */; };
+		84067277238BD72A001B4C90 /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84067275238BD72A001B4C90 /* HistoryViewController.xib */; };
 		844FFB05238B689A00272744 /* SafariViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844FFB04238B689A00272744 /* SafariViewController.swift */; };
 		844FFB08238B68D800272744 /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844FFB07238B68D800272744 /* AppConstant.swift */; };
 		844FFB0B238B79A400272744 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844FFB0A238B79A400272744 /* String+Extension.swift */; };
@@ -31,6 +33,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		84067274238BD72A001B4C90 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		84067275238BD72A001B4C90 /* HistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
 		844FFB04238B689A00272744 /* SafariViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariViewController.swift; sourceTree = "<group>"; };
 		844FFB07238B68D800272744 /* AppConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
 		844FFB0A238B79A400272744 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -67,6 +71,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		84067273238BD718001B4C90 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				84067274238BD72A001B4C90 /* HistoryViewController.swift */,
+				84067275238BD72A001B4C90 /* HistoryViewController.xib */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
 		844FFB02238B683900272744 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +144,7 @@
 		DB1EE051238A824400023145 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				84067273238BD718001B4C90 /* History */,
 				DB1EE056238A828400023145 /* MoreVC */,
 				DB1EE055238A827400023145 /* DownloadsVC */,
 				DB1EE054238A826A00023145 /* BrowserVC */,
@@ -279,6 +293,7 @@
 				DB1EE05A238A82A500023145 /* FoldersVC.xib in Resources */,
 				DB1EE05E238A82B200023145 /* BrowserVC.xib in Resources */,
 				DB1EE066238A82CC00023145 /* MoreVC.xib in Resources */,
+				84067277238BD72A001B4C90 /* HistoryViewController.xib in Resources */,
 				844FFB10238B92AF00272744 /* DownloadTableViewCell.xib in Resources */,
 				DB1EE062238A82C000023145 /* DownloadsVC.xib in Resources */,
 				DBF3A487238A3A2400B4B6E5 /* Assets.xcassets in Resources */,
@@ -297,6 +312,7 @@
 				844FFB0F238B92AF00272744 /* DownloadTableViewCell.swift in Sources */,
 				844FFB0B238B79A400272744 /* String+Extension.swift in Sources */,
 				DB1EE065238A82CC00023145 /* MoreVC.swift in Sources */,
+				84067276238BD72A001B4C90 /* HistoryViewController.swift in Sources */,
 				DB1EE059238A82A500023145 /* FoldersVC.swift in Sources */,
 				DB1EE04F238A813700023145 /* HomeVC.swift in Sources */,
 				DB1EE05D238A82B200023145 /* BrowserVC.swift in Sources */,
