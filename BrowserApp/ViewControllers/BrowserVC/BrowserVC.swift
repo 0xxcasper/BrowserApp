@@ -8,23 +8,24 @@
 
 import UIKit
 
-class BrowserVC: UIViewController {
+class BrowserVC: SafariViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.tabBarController?.tabBar.barTintColor = .white
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    override func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
     }
-    */
-
+    
+    override func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchText = searchBar.text else { return }
+        if searchText.verifyUrl() {
+            self.url = URL(string: searchText)
+        } else {
+            self.url = URL(string: "https://www.google.com/search?q=\(searchBar.text ?? "")")
+        }
+    }
 }

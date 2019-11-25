@@ -19,8 +19,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //---->screate HomeViewControler
         window = UIWindow(frame: UIScreen.main.bounds)
         let homeVC = HomeVC()
-        let nav = UINavigationController(rootViewController: homeVC)
-        self.window?.rootViewController = nav
+        let navHome = UINavigationController(rootViewController: homeVC)
+        
+        let browserVC = BrowserVC()
+        let navBrowser = UINavigationController(rootViewController: browserVC)
+
+        let downVC = DownloadsVC()
+        let navDown = UINavigationController(rootViewController: downVC)
+
+        let moreVC = MoreVC()
+        let navMore = UINavigationController(rootViewController: moreVC)
+        
+        navHome.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 0)
+        navBrowser.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 1)
+        navDown.tabBarItem = UITabBarItem(tabBarSystemItem: .downloads, tag: 2)
+        navMore.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 3)
+        
+        let tabbar = UITabBarController()
+        tabbar.viewControllers = [ navHome, navBrowser, navDown, navMore ]
+        
+        self.window?.rootViewController = tabbar
         self.window?.makeKeyAndVisible()
         //----->
         return true
