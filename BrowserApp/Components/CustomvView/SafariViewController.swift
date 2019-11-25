@@ -9,9 +9,11 @@
 import Foundation
 import UIKit
 import WebKit
+import RealmSwift
 
 class SafariViewController: UIViewController {
-    
+    private var history: Results<HistoryModel>?
+
     var url: URL? {
         didSet {
             if let url = url { load(url) }
@@ -269,8 +271,8 @@ extension SafariViewController: WKNavigationDelegate {
             NotificationCenter.default.post(name: Notification.Name.isUrlFile, object: nil, userInfo: ["url": url.absoluteString, "name": url.lastPathComponent])
             
             // Save History Here
-            
         }
+        let _ = HistoryModel.add(url: url.absoluteString)
         updateStateBarButtonItems()
     }
     

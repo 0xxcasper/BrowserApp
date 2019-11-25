@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		73BE0AA1CBC5EBD03306A220 /* Pods_BrowserApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4774EB362AAA22477E188FBB /* Pods_BrowserApp.framework */; };
 		84067276238BD72A001B4C90 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84067274238BD72A001B4C90 /* HistoryViewController.swift */; };
 		84067277238BD72A001B4C90 /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84067275238BD72A001B4C90 /* HistoryViewController.xib */; };
 		844FFB05238B689A00272744 /* SafariViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844FFB04238B689A00272744 /* SafariViewController.swift */; };
@@ -27,12 +28,14 @@
 		DB1EE062238A82C000023145 /* DownloadsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB1EE060238A82C000023145 /* DownloadsVC.xib */; };
 		DB1EE065238A82CC00023145 /* MoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1EE063238A82CC00023145 /* MoreVC.swift */; };
 		DB1EE066238A82CC00023145 /* MoreVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB1EE064238A82CC00023145 /* MoreVC.xib */; };
+		DBEDFC40238C301000297BF4 /* HistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBEDFC3F238C301000297BF4 /* HistoryModel.swift */; };
 		DBF3A480238A3A2300B4B6E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF3A47F238A3A2300B4B6E5 /* AppDelegate.swift */; };
 		DBF3A487238A3A2400B4B6E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBF3A486238A3A2400B4B6E5 /* Assets.xcassets */; };
 		DBF3A48A238A3A2400B4B6E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBF3A488238A3A2400B4B6E5 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4774EB362AAA22477E188FBB /* Pods_BrowserApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BrowserApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84067274238BD72A001B4C90 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		84067275238BD72A001B4C90 /* HistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
 		844FFB04238B689A00272744 /* SafariViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariViewController.swift; sourceTree = "<group>"; };
@@ -43,6 +46,7 @@
 		844FFB11238B961200272744 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		844FFB14238BAF7E00272744 /* DownloadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadModel.swift; sourceTree = "<group>"; };
 		844FFB17238BB0D900272744 /* FileManagerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerHelper.swift; sourceTree = "<group>"; };
+		B4CD9743CAC65831D2193066 /* Pods-BrowserApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrowserApp.release.xcconfig"; path = "Target Support Files/Pods-BrowserApp/Pods-BrowserApp.release.xcconfig"; sourceTree = "<group>"; };
 		DB1EE04D238A813700023145 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		DB1EE04E238A813700023145 /* HomeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeVC.xib; sourceTree = "<group>"; };
 		DB1EE057238A82A500023145 /* FoldersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersVC.swift; sourceTree = "<group>"; };
@@ -53,11 +57,13 @@
 		DB1EE060238A82C000023145 /* DownloadsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DownloadsVC.xib; sourceTree = "<group>"; };
 		DB1EE063238A82CC00023145 /* MoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreVC.swift; sourceTree = "<group>"; };
 		DB1EE064238A82CC00023145 /* MoreVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreVC.xib; sourceTree = "<group>"; };
+		DBEDFC3F238C301000297BF4 /* HistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryModel.swift; sourceTree = "<group>"; };
 		DBF3A47C238A3A2300B4B6E5 /* BrowserApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrowserApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBF3A47F238A3A2300B4B6E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBF3A486238A3A2400B4B6E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DBF3A489238A3A2400B4B6E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DBF3A48B238A3A2400B4B6E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DF46912893A869477C7304D2 /* Pods-BrowserApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrowserApp.debug.xcconfig"; path = "Target Support Files/Pods-BrowserApp/Pods-BrowserApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,12 +71,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73BE0AA1CBC5EBD03306A220 /* Pods_BrowserApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		28FC965C9E1002899F9B440E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4774EB362AAA22477E188FBB /* Pods_BrowserApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		84067273238BD718001B4C90 /* History */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				844FFB14238BAF7E00272744 /* DownloadModel.swift */,
+				DBEDFC3F238C301000297BF4 /* HistoryModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -139,6 +155,15 @@
 				844FFB17238BB0D900272744 /* FileManagerHelper.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		BC6AB5A2CBDEF60282F1BA15 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DF46912893A869477C7304D2 /* Pods-BrowserApp.debug.xcconfig */,
+				B4CD9743CAC65831D2193066 /* Pods-BrowserApp.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		DB1EE051238A824400023145 /* ViewControllers */ = {
@@ -205,6 +230,8 @@
 			children = (
 				DBF3A47E238A3A2300B4B6E5 /* BrowserApp */,
 				DBF3A47D238A3A2300B4B6E5 /* Products */,
+				BC6AB5A2CBDEF60282F1BA15 /* Pods */,
+				28FC965C9E1002899F9B440E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -237,9 +264,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DBF3A48E238A3A2400B4B6E5 /* Build configuration list for PBXNativeTarget "BrowserApp" */;
 			buildPhases = (
+				D44787C9430D5341AC95F15D /* [CP] Check Pods Manifest.lock */,
 				DBF3A478238A3A2300B4B6E5 /* Sources */,
 				DBF3A479238A3A2300B4B6E5 /* Frameworks */,
 				DBF3A47A238A3A2300B4B6E5 /* Resources */,
+				3C1DAA16C450DFE635AE2EB3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -302,6 +331,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3C1DAA16C450DFE635AE2EB3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BrowserApp/Pods-BrowserApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BrowserApp/Pods-BrowserApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BrowserApp/Pods-BrowserApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D44787C9430D5341AC95F15D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BrowserApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DBF3A478238A3A2300B4B6E5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -318,6 +389,7 @@
 				DB1EE05D238A82B200023145 /* BrowserVC.swift in Sources */,
 				844FFB05238B689A00272744 /* SafariViewController.swift in Sources */,
 				DB1EE061238A82C000023145 /* DownloadsVC.swift in Sources */,
+				DBEDFC40238C301000297BF4 /* HistoryModel.swift in Sources */,
 				844FFB18238BB0D900272744 /* FileManagerHelper.swift in Sources */,
 				844FFB08238B68D800272744 /* AppConstant.swift in Sources */,
 				844FFB15238BAF7E00272744 /* DownloadModel.swift in Sources */,
@@ -456,9 +528,11 @@
 		};
 		DBF3A48F238A3A2400B4B6E5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF46912893A869477C7304D2 /* Pods-BrowserApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SRSNPE33B8;
 				INFOPLIST_FILE = BrowserApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -473,9 +547,11 @@
 		};
 		DBF3A490238A3A2400B4B6E5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4CD9743CAC65831D2193066 /* Pods-BrowserApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SRSNPE33B8;
 				INFOPLIST_FILE = BrowserApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
