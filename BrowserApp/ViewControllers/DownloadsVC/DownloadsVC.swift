@@ -269,7 +269,11 @@ extension DownloadsVC: UITableViewDataSource, UITableViewDelegate {
             guard let url = URL(string: isSearch ? downloadSearchs[indexPath.row].urlStr : downloads[indexPath.row].urlStr) else { return }
             self.tbvDownload.beginUpdates()
             FileManagerHelper.removeDocument(fileUrl: url)
-            self.downloads.remove(at: indexPath.row)
+            if self.isSearch {
+                downloadSearchs.remove(at: indexPath.row)
+            } else {
+                downloads.remove(at: indexPath.row)
+            }
             self.tbvDownload.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
             self.tbvDownload.endUpdates()
         }
@@ -304,6 +308,6 @@ extension DownloadsVC: UISearchBarDelegate
         searchBar.text = String()
         searchBar.resignFirstResponder()
         isSearch = false
-        tbvDownload.reloadData()
+        showAllDocument()
     }
 }
