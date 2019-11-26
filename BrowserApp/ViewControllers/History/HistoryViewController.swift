@@ -20,13 +20,18 @@ class HistoryViewController: UIViewController {
     private lazy var doneBarButtonItem: UIBarButtonItem = {
         return UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneDidClick))
     }()
+    private lazy var clearBarButtonItem: UIBarButtonItem = {
+        return UIBarButtonItem(title: "Clear", style: .done, target: self, action: #selector(clearDidClick))
+    }()
     weak var delegate: HistoryViewControllerDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationItem.title = "History"
-        navigationItem.rightBarButtonItem = doneBarButtonItem
+        navigationItem.rightBarButtonItem = clearBarButtonItem
+        navigationItem.leftBarButtonItem = doneBarButtonItem
+
         tbView.registerXibFile(HistoryTableViewCell.self)
         tbView.delegate = self
         tbView.dataSource = self
@@ -34,12 +39,25 @@ class HistoryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.getData()
+    }
+    
+    private func getData() {
         historyList = HistoryModel.getAll()
         tbView.reloadData()
     }
 
     @objc func doneDidClick() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func clearDidClick() {
+        if(HistoryModel.getAll().count > 0) {
+            HistoryModel.getAll().forEach { (value) in
+                value.delete()
+            }
+            self.getData()
+        }
     }
 }
 
