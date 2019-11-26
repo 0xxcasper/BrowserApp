@@ -21,10 +21,18 @@ class SafariViewController: UIViewController {
     }
     var tintColor: UIColor? = .blue
     
+    private var tabs = [WKWebView]()
     private var isNewTab = false
     private var webView: WKWebView?
     private var progressView: UIProgressView?
     private let estimatedProgressKeyPath = "estimatedProgress"
+    
+    private var tableView: UITableView = {
+        let tbView = UITableView(frame: .zero, style: UITableView.Style.plain)
+        tbView.backgroundColor = .lightGray
+        tbView.registerXibFile(NewTabTableViewCell.self)
+        return tbView
+    }()
 
     private lazy var searchBars:UISearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: AppConstant.SREEEN_WIDTH - 100, height: 18))
 
@@ -133,18 +141,12 @@ class SafariViewController: UIViewController {
 private extension SafariViewController {
     
     func setUpWebView() {
-        let webConfiguration = WKWebViewConfiguration()
-        let webView = WKWebView(frame: CGRect(x: 0, y: 0, width: AppConstant.SREEEN_WIDTH, height: AppConstant.SCREEN_HEIGHT - AppConstant.STATUS_BAR_TOP - AppConstant.STATUS_BAR_BOTTOM - AppConstant.TOOL_BAR_HEIGHT), configuration: webConfiguration)
+        searchBars.placeholder = "Search or enter website name"
+        searchBars.delegate = self
         
-        webView.navigationDelegate = self
-        webView.allowsBackForwardNavigationGestures = true
-        webView.isMultipleTouchEnabled = true
-        
-        webView.addObserver(self, forKeyPath: estimatedProgressKeyPath, options: .new, context: nil)
-        self.webView = webView
-
         view = UIView(frame: CGRect(x: 0, y: 0, width: AppConstant.SREEEN_WIDTH, height: AppConstant.SCREEN_HEIGHT))
-        view.addSubview(self.webView!)
+        
+        addNewTab()
     }
     
     func setUpProgressView() {
@@ -179,8 +181,7 @@ private extension SafariViewController {
     }
     
     func setSearchBar() {
-        searchBars.placeholder = "Search or enter website name"
-        searchBars.delegate = self
+        navigationItem.title = nil
         let leftNavBarButton = UIBarButtonItem(customView: searchBars)
         navigationItem.leftBarButtonItem = leftNavBarButton
         navigationItem.rightBarButtonItem = reloadBarButtonItem
@@ -202,6 +203,37 @@ private extension SafariViewController {
         let toolBarItems = [closeButtonItem,flexibleSpaceBarButtonItem, addButtonItem, flexibleSpaceBarButtonItem ,doneButtonItem]
         
         setToolbarItems(toolBarItems, animated: true)
+    }
+    
+    func addTableView() {
+        view.addSubview(tableView)
+        tableView.centerSuperview()
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        tableView.dataSource = self
+        tableView.delegate = self
+    }
+    
+    func removeTableView() {
+        tableView.removeFromSuperview()
+    }
+    
+    func addNewTab() {
+        self.searchBars.text = ""
+        self.searchBars.endEditing(true)
+        
+        let webConfiguration = WKWebViewConfiguration()
+        let webView = WKWebView(frame: CGRect(x: 0, y: 0, width: AppConstant.SREEEN_WIDTH, height: AppConstant.SCREEN_HEIGHT - AppConstant.STATUS_BAR_TOP - AppConstant.STATUS_BAR_BOTTOM - AppConstant.TOOL_BAR_HEIGHT), configuration: webConfiguration)
+        
+        webView.navigationDelegate = self
+        webView.allowsBackForwardNavigationGestures = true
+        webView.isMultipleTouchEnabled = true
+        
+        webView.addObserver(self, forKeyPath: estimatedProgressKeyPath, options: .new, context: nil)
+        tabs.append(webView)
+        
+        self.webView = webView
+        view.addSubview(self.webView!)
     }
 }
 
@@ -276,20 +308,27 @@ private extension SafariViewController {
         if isNewTab {
             setToolBarItems()
             setSearchBar()
+            removeTableView()
             isNewTab = false
         } else {
             setNewTabToolBarItems()
             setTitleBar()
+            addTableView()
+            tableView.reloadData()
             isNewTab = true
         }
     }
     
     func closeDidClick() {
-        
+        tabs.removeAll()
+        addNewTab()
     }
     
     func addDidClick() {
-        
+        self.addNewTab()
+        self.setToolBarItems()
+        self.setSearchBar()
+        self.isNewTab = false
     }
 }
 
@@ -345,5 +384,46 @@ extension SafariViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         decisionHandler(WKNavigationActionPolicy(rawValue: WKNavigationActionPolicy.allow.rawValue + 2)!)
+    }
+}
+
+// MARK: - UITableViewDataSource's Method
+
+extension SafariViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tabs.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue(NewTabTableViewCell.self, for: indexPath)
+        cell.lblTitle.text = tabs[indexPath.row].title == "" ? "New Tab" : tabs[indexPath.row].title
+        cell.lblTitle.textColor = tabs[indexPath.row] == self.webView ? .blue : .black
+        cell.delegate = self
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        setToolBarItems()
+        setSearchBar()
+        removeTableView()
+        isNewTab = false
+        
+        self.webView = tabs[indexPath.row]
+        view.addSubview(self.webView!)
+        updateStateBarButtonItems()
+    }
+}
+
+// MARK: - NewTabTableViewCellDelegate's Method
+
+extension SafariViewController: NewTabTableViewCellDelegate
+{
+    func removeTab(indexP: IndexPath) {
+        tabs.remove(at: indexP.row)
+        tableView.reloadData()
+        if tabs.count == 0 {
+            addNewTab()
+        }
     }
 }
