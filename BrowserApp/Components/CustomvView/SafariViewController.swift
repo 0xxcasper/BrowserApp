@@ -21,6 +21,7 @@ class SafariViewController: UIViewController {
     }
     var tintColor: UIColor? = .blue
     
+    private var isNewTab = false
     private var webView: WKWebView?
     private var progressView: UIProgressView?
     private let estimatedProgressKeyPath = "estimatedProgress"
@@ -48,7 +49,7 @@ class SafariViewController: UIViewController {
     }()
     
     private lazy var activityBarButtonItem: UIBarButtonItem = {
-        return UIBarButtonItem(image: UIImage(named: "activity"), style: .plain, target: self, action: #selector(activityDidClick))
+        return UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(activityDidClick))
     }()
     
     private lazy var historyBarButtonItem: UIBarButtonItem = {
@@ -57,6 +58,22 @@ class SafariViewController: UIViewController {
     
     private lazy var flexibleSpaceBarButtonItem: UIBarButtonItem = {
         return UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+    }()
+    
+    private lazy var newTabBarButtonItem: UIBarButtonItem = {
+        return UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(newTabDidClick))
+    }()
+    
+    private lazy var addButtonItem: UIBarButtonItem = {
+        return UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addDidClick))
+    }()
+    
+    private lazy var closeButtonItem: UIBarButtonItem = {
+        return UIBarButtonItem(title: "Close All", style: UIBarButtonItem.Style.plain, target: self, action: #selector(closeDidClick))
+    }()
+    
+    private lazy var doneButtonItem: UIBarButtonItem = {
+        return UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(newTabDidClick))
     }()
     
     public convenience init( url: URL, tintColor: UIColor = .blue) {
@@ -139,15 +156,8 @@ private extension SafariViewController {
     }
     
     func setUpBarButtonItems() {
-        searchBars.placeholder = "Search or enter website name"
-        searchBars.delegate = self
-        let leftNavBarButton = UIBarButtonItem(customView: searchBars)
-        navigationItem.leftBarButtonItem = leftNavBarButton
-        navigationItem.rightBarButtonItem = reloadBarButtonItem
-       
-        let toolBarItems = [backBarButtonItem, flexibleSpaceBarButtonItem ,forwardBarButtonItem, flexibleSpaceBarButtonItem, flexibleSpaceBarButtonItem, flexibleSpaceBarButtonItem ,flexibleSpaceBarButtonItem, historyBarButtonItem, flexibleSpaceBarButtonItem ,activityBarButtonItem]
-        
-        setToolbarItems(toolBarItems, animated: true)
+        setSearchBar()
+        setToolBarItems()
         
         backBarButtonItem.isEnabled = false
         forwardBarButtonItem.isEnabled = false
@@ -166,6 +176,32 @@ private extension SafariViewController {
             progressView.progressTintColor = .blue
             navigationController.navigationBar.addSubview(progressView)
         }
+    }
+    
+    func setSearchBar() {
+        searchBars.placeholder = "Search or enter website name"
+        searchBars.delegate = self
+        let leftNavBarButton = UIBarButtonItem(customView: searchBars)
+        navigationItem.leftBarButtonItem = leftNavBarButton
+        navigationItem.rightBarButtonItem = reloadBarButtonItem
+    }
+    
+    func setTitleBar() {
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.rightBarButtonItem = nil
+        navigationItem.title = "New Tab"
+    }
+    
+    func setToolBarItems() {
+        let toolBarItems = [backBarButtonItem, flexibleSpaceBarButtonItem ,forwardBarButtonItem, flexibleSpaceBarButtonItem, flexibleSpaceBarButtonItem, flexibleSpaceBarButtonItem ,flexibleSpaceBarButtonItem, historyBarButtonItem, flexibleSpaceBarButtonItem ,activityBarButtonItem, flexibleSpaceBarButtonItem, newTabBarButtonItem]
+        
+        setToolbarItems(toolBarItems, animated: true)
+    }
+    
+    func setNewTabToolBarItems() {
+        let toolBarItems = [closeButtonItem,flexibleSpaceBarButtonItem, addButtonItem, flexibleSpaceBarButtonItem ,doneButtonItem]
+        
+        setToolbarItems(toolBarItems, animated: true)
     }
 }
 
@@ -233,6 +269,26 @@ private extension SafariViewController {
     }
     
     func historyDidClick() {
+        
+    }
+    
+    func newTabDidClick() {
+        if isNewTab {
+            setToolBarItems()
+            setSearchBar()
+            isNewTab = false
+        } else {
+            setNewTabToolBarItems()
+            setTitleBar()
+            isNewTab = true
+        }
+    }
+    
+    func closeDidClick() {
+        
+    }
+    
+    func addDidClick() {
         
     }
 }
