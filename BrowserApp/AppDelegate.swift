@@ -26,7 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let downVC = DownloadsVC()
         let navDown = UINavigationController(rootViewController: downVC)
-
+        navDown.navigationBar.prefersLargeTitles = true
+        
         let moreVC = MoreVC()
         let navMore = UINavigationController(rootViewController: moreVC)
         

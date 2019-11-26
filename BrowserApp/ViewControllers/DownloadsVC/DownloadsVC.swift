@@ -11,6 +11,8 @@ import UIKit
 class DownloadsVC: UIViewController {
     
     @IBOutlet weak var tbvDownload: UITableView!
+
+    private let searchController = UISearchController(searchResultsController: nil)
     
     private lazy var addBarButtonItem: UIBarButtonItem = {
         return UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addDidClick))
@@ -25,7 +27,9 @@ class DownloadsVC: UIViewController {
     
     private var downloads = [DownloadModel]()
     private var downloadings = [DownloadModel]()
+    private var downloadSearchs = [DownloadModel]()
     private var isPause = false
+    private var isSearch = false
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: Notification.Name.beginDownload, object: nil)
@@ -43,6 +47,7 @@ class DownloadsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUpSearchBar()
         setUpView()
         setUpTableView()
         showAllDocument()
@@ -104,6 +109,10 @@ private extension DownloadsVC {
         navigationItem.title = "Download"
         navigationItem.leftBarButtonItem = addBarButtonItem
         navigationItem.rightBarButtonItem = editBarButtonItem
+        navigationItem.hidesSearchBarWhenScrolling = false
+
+        let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: self.view.tintColor]
+        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes as [NSAttributedString.Key : Any] , for: .normal)
     }
     
     func setUpTableView() {
@@ -111,6 +120,16 @@ private extension DownloadsVC {
         tbvDownload.rowHeight = 45
         tbvDownload.dataSource = self
         tbvDownload.delegate = self
+    }
+    
+    func setUpSearchBar() {
+        self.searchController.obscuresBackgroundDuringPresentation = false
+        self.searchController.searchBar.placeholder = "Search downloads"
+        self.searchController.searchBar.delegate = self
+        self.definesPresentationContext = false
+        self.searchController.searchBar.searchTextField.tintColor = self.view.tintColor
+
+        self.navigationItem.searchController = searchController
     }
     
     func showAllDocument() {
@@ -170,6 +189,12 @@ private extension DownloadsVC {
             downloadTask.resume()
         })
     }
+    
+    func filterFunction(searchText: String) {
+        downloadSearchs = downloads.filter({ $0.name.contains(searchText)})
+        isSearch = true
+        tbvDownload.reloadData()
+    }
 }
 
 // MARK: - URLSessionDownloadDelegate's Method
@@ -223,29 +248,62 @@ extension DownloadsVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? downloadings.count : downloads.count
+        return section == 0 ? downloadings.count : (isSearch ? downloadSearchs.count : downloads.count)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(DownloadTableViewCell.self, for: indexPath)
-        cell.setDataCell(down: indexPath.section == 0 ? downloadings[indexPath.row] : downloads[indexPath.row])
+        cell.setDataCell(down: indexPath.section == 0 ? downloadings[indexPath.row] :
+            (isSearch ? downloadSearchs[indexPath.row] : downloads[indexPath.row]))
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 1, let url = URL(string: downloads[indexPath.row].urlStr) {
+        if indexPath.section == 1, let url = URL(string: isSearch ? downloadSearchs[indexPath.row].urlStr : downloads[indexPath.row].urlStr) {
             self.openDocument(fileUrl: url)
         }
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) && indexPath.section == 1  {
-            guard let url = URL(string: downloads[indexPath.row].urlStr) else { return }
+            guard let url = URL(string: isSearch ? downloadSearchs[indexPath.row].urlStr : downloads[indexPath.row].urlStr) else { return }
             self.tbvDownload.beginUpdates()
             FileManagerHelper.removeDocument(fileUrl: url)
             self.downloads.remove(at: indexPath.row)
             self.tbvDownload.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
             self.tbvDownload.endUpdates()
         }
+    }
+}
+
+//MARK: - UISearchBarDelegate's Method
+
+extension DownloadsVC: UISearchBarDelegate
+{
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        isSearch = true
+        tbvDownload.reloadData()
+        searchBar.setShowsCancelButton(true, animated: true)
+        searchBar.tintColor = .white
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.filterFunction(searchText: searchText)
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar)    {
+        searchBar.setShowsCancelButton(false, animated: true)
+        searchBar.resignFirstResponder()
+        guard let term = searchBar.text, term.isEmpty == false else { return }
+
+        self.filterFunction(searchText: term)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(false, animated: true)
+        searchBar.text = String()
+        searchBar.resignFirstResponder()
+        isSearch = false
+        tbvDownload.reloadData()
     }
 }
