@@ -13,7 +13,7 @@ struct FileManagerHelper {
     static func removeDocument(fileUrl: URL ){
         let fileManager = FileManager.default
         do {
-            if fileManager.fileExists(atPath: fileUrl.path) {
+            if fileManager.fileExists(atPath: fileUrl.path) && fileUrl.absoluteString.isUrlFile() {
                 try fileManager.removeItem(at: fileUrl)
             }
         } catch {
