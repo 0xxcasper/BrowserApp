@@ -267,7 +267,7 @@ extension SafariViewController: WKNavigationDelegate {
     public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         guard let url = webView.url else { return }
         searchBars.text = url.absoluteString
-        if url.absoluteString.isUrlFile() {
+        if url.lastPathComponent.isUrlFile() {
             NotificationCenter.default.post(name: Notification.Name.isUrlFile, object: nil, userInfo: ["url": url.absoluteString, "name": url.lastPathComponent])
         }
         updateStateBarButtonItems()
