@@ -9,7 +9,7 @@
 import UIKit
 import MobileCoreServices
 
-class BrowserVC: SafariViewController {
+class BrowserVC: SafariViewController, HistoryViewControllerDelegate{
 
     deinit {
         NotificationCenter.default.removeObserver(self, name: Notification.Name.isUrlFile, object: nil)
@@ -22,8 +22,10 @@ class BrowserVC: SafariViewController {
     }
     
     override func historyDidClick() {
-        let historyVC = UINavigationController(rootViewController: HistoryViewController())
-        self.present(historyVC, animated: true, completion: nil)
+        let historyVC = HistoryViewController()
+        historyVC.delegate = self
+        let navHistory = UINavigationController(rootViewController: historyVC)
+        self.present(navHistory, animated: true, completion: nil)
     }
     
     override func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -62,5 +64,9 @@ class BrowserVC: SafariViewController {
     private func copyToClipBoard(textToCopy: String) {
         let pasteBoard = UIPasteboard.general
         pasteBoard.setValue(textToCopy, forPasteboardType: kUTTypePlainText as String)
+    }
+    
+    func didSelectHistory(url: String) {
+        self.url = URL(string: url)
     }
 }

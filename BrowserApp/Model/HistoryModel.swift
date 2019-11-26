@@ -16,29 +16,34 @@ import RealmSwift
     
     dynamic var id = UUID().uuidString
     dynamic var url = ""
-    
+    dynamic var name = ""
+    dynamic var time = Date()
+
     override static func primaryKey() -> String? {
         return HistoryModel.Property.id.rawValue
     }
     
-    convenience init(_ url: String) {
+    convenience init(_ url: String, _ name: String,_ time: Date) {
         self.init()
         self.url = url
+        self.name = name
+        self.time = time
     }
 }
 
-
 extension HistoryModel {
-    static func add(url: String, in realm: Realm = try! Realm()) -> HistoryModel {
-        let history = HistoryModel(url)
+    static func add(url: String, name: String, time: Date,in realm: Realm = try! Realm()) -> HistoryModel {
+        let history = HistoryModel(url, name, time)
         try! realm.write {
             realm.add(history)
         }
         return history
     }
     
-    static func getAll(in realm: Realm = try! Realm()) -> Results<HistoryModel> {
-        return realm.objects(HistoryModel.self)
+    static func getAll(in realm: Realm = try! Realm()) -> [HistoryModel] {
+        return realm.objects(HistoryModel.self).sorted { (history1, history2) -> Bool in
+            return history1.time > history2.time
+        }
     }
     
     func delete() {

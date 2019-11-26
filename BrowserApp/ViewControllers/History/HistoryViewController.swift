@@ -9,19 +9,25 @@
 import UIKit
 import RealmSwift
 
+protocol HistoryViewControllerDelegate: class {
+    func didSelectHistory( url: String)
+}
+
 class HistoryViewController: UIViewController {
 
     @IBOutlet weak var tbView: UITableView!
-    private var historyList: Results<HistoryModel>?
+    private var historyList: [HistoryModel]?
     private lazy var doneBarButtonItem: UIBarButtonItem = {
         return UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneDidClick))
     }()
+    weak var delegate: HistoryViewControllerDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationItem.title = "History"
         navigationItem.rightBarButtonItem = doneBarButtonItem
+        tbView.registerXibFile(HistoryTableViewCell.self)
         tbView.delegate = self
         tbView.dataSource = self
     }
@@ -43,10 +49,12 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = historyList![indexPath.row].url
+        let cell = tbView.dequeue(HistoryTableViewCell.self, for: indexPath)
+        cell.lblTitle.text = historyList![indexPath.row].name
+        cell.lblUrl.text = historyList![indexPath.row].url
         return cell
     }
+    
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -60,4 +68,8 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate.didSelectHistory(url: historyList![indexPath.row].url)
+        self.dismiss(animated: true, completion: nil)
+    }
 }

@@ -23,8 +23,11 @@ extension String {
     }
     
     func isUrlFile() -> Bool {
-        if self.contains(".pdf") || self.contains(".doc") || self.contains(".docx") || self.contains(".xls")
-            || self.contains(".xlsx") || self.contains(".zip") || self.contains(".ppt") || self.contains(".pttx") || self.contains(".mp3") || self.contains(".wav") || self.contains(".rtf") || self.contains(".png") || self.contains(".jpg"){
+        if self.contains(".pdf") || self.contains(".doc")  || self.contains(".docx") ||
+           self.contains(".xls") || self.contains(".xlsx") || self.contains(".zip") ||
+           self.contains(".ppt") || self.contains(".pttx") || self.contains(".mp3") ||
+           self.contains(".wav") || self.contains(".rtf")  || self.contains(".png") ||
+           self.contains(".jpg") || self.contains(".gif")  || self.contains(".mp4") {
             return true
         }
         return false

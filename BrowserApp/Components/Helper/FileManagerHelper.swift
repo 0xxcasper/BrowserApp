@@ -34,8 +34,9 @@ struct FileManagerHelper {
         if #available(iOS 10.0, *) {
             do {
                 let docURL = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-                let contents = try FileManager.default.contentsOfDirectory(at: docURL, includingPropertiesForKeys: [.fileResourceTypeKey], options: .skipsHiddenFiles)
-                return contents
+                let contents = try FileManager.default.contentsOfDirectory(at: docURL, includingPropertiesForKeys: [.fileResourceTypeKey], options: [.skipsHiddenFiles])
+                let urls = contents.filter({ $0.lastPathComponent.isUrlFile() })
+                return urls
             } catch {
                 print("Could not locate file")
             }
