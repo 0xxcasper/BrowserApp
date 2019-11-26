@@ -20,6 +20,7 @@
 		844FFB18238BB0D900272744 /* FileManagerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844FFB17238BB0D900272744 /* FileManagerHelper.swift */; };
 		84D45ED8238CBA4B000FD5CA /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D45ED6238CBA4B000FD5CA /* HistoryTableViewCell.swift */; };
 		84D45ED9238CBA4B000FD5CA /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D45ED7238CBA4B000FD5CA /* HistoryTableViewCell.xib */; };
+		84D45EDB238CDCD6000FD5CA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D45EDA238CDCD6000FD5CA /* BaseViewController.swift */; };
 		DB1EE04F238A813700023145 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1EE04D238A813700023145 /* HomeVC.swift */; };
 		DB1EE050238A813700023145 /* HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB1EE04E238A813700023145 /* HomeVC.xib */; };
 		DB1EE059238A82A500023145 /* FoldersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1EE057238A82A500023145 /* FoldersVC.swift */; };
@@ -50,6 +51,7 @@
 		844FFB17238BB0D900272744 /* FileManagerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerHelper.swift; sourceTree = "<group>"; };
 		84D45ED6238CBA4B000FD5CA /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		84D45ED7238CBA4B000FD5CA /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
+		84D45EDA238CDCD6000FD5CA /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		B4CD9743CAC65831D2193066 /* Pods-BrowserApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrowserApp.release.xcconfig"; path = "Target Support Files/Pods-BrowserApp/Pods-BrowserApp.release.xcconfig"; sourceTree = "<group>"; };
 		DB1EE04D238A813700023145 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		DB1EE04E238A813700023145 /* HomeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeVC.xib; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				844FFB04238B689A00272744 /* SafariViewController.swift */,
+				84D45EDA238CDCD6000FD5CA /* BaseViewController.swift */,
 			);
 			path = CustomvView;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				DB1EE065238A82CC00023145 /* MoreVC.swift in Sources */,
 				84067276238BD72A001B4C90 /* HistoryViewController.swift in Sources */,
 				DB1EE059238A82A500023145 /* FoldersVC.swift in Sources */,
+				84D45EDB238CDCD6000FD5CA /* BaseViewController.swift in Sources */,
 				DB1EE04F238A813700023145 /* HomeVC.swift in Sources */,
 				DB1EE05D238A82B200023145 /* BrowserVC.swift in Sources */,
 				844FFB05238B689A00272744 /* SafariViewController.swift in Sources */,
@@ -548,7 +552,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SRSNPE33B8;
+				DEVELOPMENT_TEAM = DGFP28D4W6;
 				INFOPLIST_FILE = BrowserApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -567,7 +571,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SRSNPE33B8;
+				DEVELOPMENT_TEAM = DGFP28D4W6;
 				INFOPLIST_FILE = BrowserApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

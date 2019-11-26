@@ -8,18 +8,9 @@
 
 import UIKit
 
-class DownloadsVC: UIViewController {
+class DownloadsVC: BaseViewController {
     
     @IBOutlet weak var tbvDownload: UITableView!
-
-    private let searchController = UISearchController(searchResultsController: nil)
-    
-    private lazy var addBarButtonItem: UIBarButtonItem = {
-        return UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addDidClick))
-    }()
-    private lazy var editBarButtonItem: UIBarButtonItem = {
-        return UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editDidClick))
-    }()
     
     private var documentInteractionController: UIDocumentInteractionController?
     private var downloadTasks = [URLSessionDownloadTask]()
@@ -46,19 +37,15 @@ class DownloadsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        addLeftBarButton()
+        addRightBarButton()
         setUpSearchBar()
         setUpView()
         setUpTableView()
         showAllDocument()
     }
-}
-
-// MARK: - Action's Method
-
-private extension DownloadsVC {
     
-    @objc func addDidClick() {
+    override func addDidClick() {
         let alert = UIAlertController(title: "Download URL", message: nil, preferredStyle: .alert)
         alert.addTextField { (textField) in
             textField.placeholder = "https://example.com"
@@ -76,7 +63,7 @@ private extension DownloadsVC {
         self.present(alert, animated: true, completion: nil)
     }
     
-    @objc func editDidClick() {
+    override func editDidClick() {
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let pauseAction = UIAlertAction(title: !isPause ? "Pause All" : "Resume All", style: .default) { (UIAlertAction) in
             !self.isPause ? self.pauseAllTask() : self.resumeAllTask()
@@ -93,6 +80,11 @@ private extension DownloadsVC {
         optionMenu.addAction(cancelAction)
         self.present(optionMenu, animated: true, completion: nil)
     }
+}
+
+// MARK: - Action's Method
+
+extension DownloadsVC {
     
     @objc func beginDownload(notification: Notification) {
         if let urlStr = notification.userInfo?["url"] as? String, let url = URL(string: urlStr) {
@@ -107,12 +99,6 @@ private extension DownloadsVC {
     
     func setUpView() {
         navigationItem.title = "Download"
-        navigationItem.leftBarButtonItem = addBarButtonItem
-        navigationItem.rightBarButtonItem = editBarButtonItem
-        navigationItem.hidesSearchBarWhenScrolling = false
-
-        let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: self.view.tintColor]
-        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes as [NSAttributedString.Key : Any] , for: .normal)
     }
     
     func setUpTableView() {
@@ -120,16 +106,6 @@ private extension DownloadsVC {
         tbvDownload.rowHeight = 45
         tbvDownload.dataSource = self
         tbvDownload.delegate = self
-    }
-    
-    func setUpSearchBar() {
-        self.searchController.obscuresBackgroundDuringPresentation = false
-        self.searchController.searchBar.placeholder = "Search downloads"
-        self.searchController.searchBar.delegate = self
-        self.definesPresentationContext = false
-        self.searchController.searchBar.searchTextField.tintColor = self.view.tintColor
-
-        self.navigationItem.searchController = searchController
     }
     
     func showAllDocument() {
@@ -282,20 +258,20 @@ extension DownloadsVC: UITableViewDataSource, UITableViewDelegate {
 
 //MARK: - UISearchBarDelegate's Method
 
-extension DownloadsVC: UISearchBarDelegate
+extension DownloadsVC
 {
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+    override func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         isSearch = true
         tbvDownload.reloadData()
         searchBar.setShowsCancelButton(true, animated: true)
         searchBar.tintColor = .white
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    override func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.filterFunction(searchText: searchText)
     }
 
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar)    {
+    override func searchBarSearchButtonClicked(_ searchBar: UISearchBar)    {
         searchBar.setShowsCancelButton(false, animated: true)
         searchBar.resignFirstResponder()
         guard let term = searchBar.text, term.isEmpty == false else { return }
@@ -303,7 +279,7 @@ extension DownloadsVC: UISearchBarDelegate
         self.filterFunction(searchText: term)
     }
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    override func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(false, animated: true)
         searchBar.text = String()
         searchBar.resignFirstResponder()
