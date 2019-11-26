@@ -284,6 +284,7 @@ extension DownloadsVC
         searchBar.text = String()
         searchBar.resignFirstResponder()
         isSearch = false
+        downloadSearchs.removeAll()
         showAllDocument()
     }
 }
