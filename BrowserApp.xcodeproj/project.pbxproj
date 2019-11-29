@@ -18,6 +18,8 @@
 		844FFB12238B961200272744 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844FFB11238B961200272744 /* UITableView+Extension.swift */; };
 		844FFB15238BAF7E00272744 /* DownloadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844FFB14238BAF7E00272744 /* DownloadModel.swift */; };
 		844FFB18238BB0D900272744 /* FileManagerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844FFB17238BB0D900272744 /* FileManagerHelper.swift */; };
+		8450777C2390F6AE00619A5F /* BrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450777A2390F6AE00619A5F /* BrowserViewController.swift */; };
+		8450777D2390F6AE00619A5F /* BrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8450777B2390F6AE00619A5F /* BrowserViewController.xib */; };
 		8459E7C6238D2E0F0098010C /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8459E7C5238D2E0F0098010C /* UIView+Extension.swift */; };
 		8459E7CA238D2EA60098010C /* NewTabTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8459E7C8238D2EA60098010C /* NewTabTableViewCell.swift */; };
 		8459E7CB238D2EA60098010C /* NewTabTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8459E7C9238D2EA60098010C /* NewTabTableViewCell.xib */; };
@@ -28,8 +30,6 @@
 		DB1EE050238A813700023145 /* HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB1EE04E238A813700023145 /* HomeVC.xib */; };
 		DB1EE059238A82A500023145 /* FoldersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1EE057238A82A500023145 /* FoldersVC.swift */; };
 		DB1EE05A238A82A500023145 /* FoldersVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB1EE058238A82A500023145 /* FoldersVC.xib */; };
-		DB1EE05D238A82B200023145 /* BrowserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1EE05B238A82B200023145 /* BrowserVC.swift */; };
-		DB1EE05E238A82B200023145 /* BrowserVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB1EE05C238A82B200023145 /* BrowserVC.xib */; };
 		DB1EE061238A82C000023145 /* DownloadsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1EE05F238A82C000023145 /* DownloadsVC.swift */; };
 		DB1EE062238A82C000023145 /* DownloadsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB1EE060238A82C000023145 /* DownloadsVC.xib */; };
 		DB1EE065238A82CC00023145 /* MoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1EE063238A82CC00023145 /* MoreVC.swift */; };
@@ -52,6 +52,8 @@
 		844FFB11238B961200272744 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		844FFB14238BAF7E00272744 /* DownloadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadModel.swift; sourceTree = "<group>"; };
 		844FFB17238BB0D900272744 /* FileManagerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerHelper.swift; sourceTree = "<group>"; };
+		8450777A2390F6AE00619A5F /* BrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserViewController.swift; sourceTree = "<group>"; };
+		8450777B2390F6AE00619A5F /* BrowserViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BrowserViewController.xib; sourceTree = "<group>"; };
 		8459E7C5238D2E0F0098010C /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		8459E7C8238D2EA60098010C /* NewTabTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTabTableViewCell.swift; sourceTree = "<group>"; };
 		8459E7C9238D2EA60098010C /* NewTabTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewTabTableViewCell.xib; sourceTree = "<group>"; };
@@ -63,8 +65,6 @@
 		DB1EE04E238A813700023145 /* HomeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeVC.xib; sourceTree = "<group>"; };
 		DB1EE057238A82A500023145 /* FoldersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersVC.swift; sourceTree = "<group>"; };
 		DB1EE058238A82A500023145 /* FoldersVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FoldersVC.xib; sourceTree = "<group>"; };
-		DB1EE05B238A82B200023145 /* BrowserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserVC.swift; sourceTree = "<group>"; };
-		DB1EE05C238A82B200023145 /* BrowserVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BrowserVC.xib; sourceTree = "<group>"; };
 		DB1EE05F238A82C000023145 /* DownloadsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsVC.swift; sourceTree = "<group>"; };
 		DB1EE060238A82C000023145 /* DownloadsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DownloadsVC.xib; sourceTree = "<group>"; };
 		DB1EE063238A82CC00023145 /* MoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreVC.swift; sourceTree = "<group>"; };
@@ -234,8 +234,8 @@
 		DB1EE054238A826A00023145 /* BrowserVC */ = {
 			isa = PBXGroup;
 			children = (
-				DB1EE05B238A82B200023145 /* BrowserVC.swift */,
-				DB1EE05C238A82B200023145 /* BrowserVC.xib */,
+				8450777A2390F6AE00619A5F /* BrowserViewController.swift */,
+				8450777B2390F6AE00619A5F /* BrowserViewController.xib */,
 			);
 			path = BrowserVC;
 			sourceTree = "<group>";
@@ -355,9 +355,9 @@
 				DB1EE050238A813700023145 /* HomeVC.xib in Resources */,
 				DB1EE05A238A82A500023145 /* FoldersVC.xib in Resources */,
 				8459E7CB238D2EA60098010C /* NewTabTableViewCell.xib in Resources */,
-				DB1EE05E238A82B200023145 /* BrowserVC.xib in Resources */,
 				DB1EE066238A82CC00023145 /* MoreVC.xib in Resources */,
 				84067277238BD72A001B4C90 /* HistoryViewController.xib in Resources */,
+				8450777D2390F6AE00619A5F /* BrowserViewController.xib in Resources */,
 				84D45ED9238CBA4B000FD5CA /* HistoryTableViewCell.xib in Resources */,
 				844FFB10238B92AF00272744 /* DownloadTableViewCell.xib in Resources */,
 				DB1EE062238A82C000023145 /* DownloadsVC.xib in Resources */,
@@ -424,13 +424,13 @@
 				84D45EDB238CDCD6000FD5CA /* BaseViewController.swift in Sources */,
 				8459E7CA238D2EA60098010C /* NewTabTableViewCell.swift in Sources */,
 				DB1EE04F238A813700023145 /* HomeVC.swift in Sources */,
-				DB1EE05D238A82B200023145 /* BrowserVC.swift in Sources */,
 				844FFB05238B689A00272744 /* SafariViewController.swift in Sources */,
 				84D45ED8238CBA4B000FD5CA /* HistoryTableViewCell.swift in Sources */,
 				8459E7C6238D2E0F0098010C /* UIView+Extension.swift in Sources */,
 				DB1EE061238A82C000023145 /* DownloadsVC.swift in Sources */,
 				DBEDFC40238C301000297BF4 /* HistoryModel.swift in Sources */,
 				844FFB18238BB0D900272744 /* FileManagerHelper.swift in Sources */,
+				8450777C2390F6AE00619A5F /* BrowserViewController.swift in Sources */,
 				844FFB08238B68D800272744 /* AppConstant.swift in Sources */,
 				844FFB15238BAF7E00272744 /* DownloadModel.swift in Sources */,
 			);

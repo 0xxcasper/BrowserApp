@@ -9,7 +9,7 @@
 import UIKit
 import MobileCoreServices
 
-class BrowserVC: SafariViewController, HistoryViewControllerDelegate{
+class BrowserViewController: SafariViewController, HistoryViewControllerDelegate{
 
     deinit {
         NotificationCenter.default.removeObserver(self, name: Notification.Name.isUrlFile, object: nil)
@@ -19,6 +19,13 @@ class BrowserVC: SafariViewController, HistoryViewControllerDelegate{
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(self.receivedNotificationIsURLFile(notification:)), name: Notification.Name.isUrlFile, object: nil)
         self.tabBarController?.tabBar.barTintColor = .white
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        view.frame.size.height = AppConstant.SCREEN_HEIGHT
+        view.layoutIfNeeded()
     }
     
     override func historyDidClick() {

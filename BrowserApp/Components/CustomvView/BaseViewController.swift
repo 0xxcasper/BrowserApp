@@ -41,7 +41,7 @@ class BaseViewController: UIViewController {
         self.searchController.searchBar.placeholder = "Search downloads"
         self.searchController.searchBar.delegate = self
         self.definesPresentationContext = false
-        self.searchController.searchBar.searchTextField.tintColor = self.view.tintColor
+        self.searchController.searchBar.searchTextField.tintColor = .blue
 
         self.navigationItem.searchController = searchController
     }

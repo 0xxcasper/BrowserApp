@@ -144,8 +144,6 @@ private extension SafariViewController {
         searchBars.placeholder = "Search or enter website name"
         searchBars.delegate = self
         
-        view = UIView(frame: CGRect(x: 0, y: 0, width: AppConstant.SREEEN_WIDTH, height: AppConstant.SCREEN_HEIGHT))
-        
         addNewTab()
     }
     
@@ -234,6 +232,8 @@ private extension SafariViewController {
         
         self.webView = webView
         view.addSubview(self.webView!)
+        
+        self.url = URL(string: "https://www.google.com")
     }
 }
 
@@ -359,7 +359,7 @@ extension SafariViewController: UISearchBarDelegate {
 
 extension SafariViewController: WKNavigationDelegate {
     
-    public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         guard let url = webView.url else { return }
         searchBars.text = url.absoluteString
         if url.lastPathComponent.isUrlFile() {
@@ -368,17 +368,17 @@ extension SafariViewController: WKNavigationDelegate {
         updateStateBarButtonItems()
     }
     
-    public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         guard let url = webView.url else { return }
         let _ = HistoryModel.add(url: url.absoluteString, name: webView.title ?? " ", time: Date())
         updateStateBarButtonItems()
     }
     
-    public func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         updateStateBarButtonItems()
     }
     
-    public func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         updateStateBarButtonItems()
     }
     

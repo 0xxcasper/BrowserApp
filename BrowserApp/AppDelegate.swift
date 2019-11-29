@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let homeVC = HomeVC()
         let navHome = UINavigationController(rootViewController: homeVC)
         
-        let browserVC = BrowserVC()
+        let browserVC = BrowserViewController()
         let navBrowser = UINavigationController(rootViewController: browserVC)
 
         let downVC = DownloadsVC()
