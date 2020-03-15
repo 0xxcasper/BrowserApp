@@ -34,6 +34,9 @@
 		DB1EE062238A82C000023145 /* DownloadsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB1EE060238A82C000023145 /* DownloadsVC.xib */; };
 		DB1EE065238A82CC00023145 /* MoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1EE063238A82CC00023145 /* MoreVC.swift */; };
 		DB1EE066238A82CC00023145 /* MoreVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB1EE064238A82CC00023145 /* MoreVC.xib */; };
+		DBD547E8241E89CF00693BE5 /* FolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD547E6241E89CF00693BE5 /* FolderCell.swift */; };
+		DBD547E9241E89CF00693BE5 /* FolderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBD547E7241E89CF00693BE5 /* FolderCell.xib */; };
+		DBD547EB241E8BBE00693BE5 /* UICollectionVIew+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD547EA241E8BBE00693BE5 /* UICollectionVIew+Extension.swift */; };
 		DBEDFC40238C301000297BF4 /* HistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBEDFC3F238C301000297BF4 /* HistoryModel.swift */; };
 		DBF3A480238A3A2300B4B6E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF3A47F238A3A2300B4B6E5 /* AppDelegate.swift */; };
 		DBF3A487238A3A2400B4B6E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBF3A486238A3A2400B4B6E5 /* Assets.xcassets */; };
@@ -69,6 +72,9 @@
 		DB1EE060238A82C000023145 /* DownloadsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DownloadsVC.xib; sourceTree = "<group>"; };
 		DB1EE063238A82CC00023145 /* MoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreVC.swift; sourceTree = "<group>"; };
 		DB1EE064238A82CC00023145 /* MoreVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreVC.xib; sourceTree = "<group>"; };
+		DBD547E6241E89CF00693BE5 /* FolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCell.swift; sourceTree = "<group>"; };
+		DBD547E7241E89CF00693BE5 /* FolderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FolderCell.xib; sourceTree = "<group>"; };
+		DBD547EA241E8BBE00693BE5 /* UICollectionVIew+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionVIew+Extension.swift"; sourceTree = "<group>"; };
 		DBEDFC3F238C301000297BF4 /* HistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryModel.swift; sourceTree = "<group>"; };
 		DBF3A47C238A3A2300B4B6E5 /* BrowserApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrowserApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBF3A47F238A3A2300B4B6E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -143,6 +149,7 @@
 				844FFB0A238B79A400272744 /* String+Extension.swift */,
 				844FFB11238B961200272744 /* UITableView+Extension.swift */,
 				8459E7C5238D2E0F0098010C /* UIView+Extension.swift */,
+				DBD547EA241E8BBE00693BE5 /* UICollectionVIew+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -225,6 +232,7 @@
 		DB1EE053238A825E00023145 /* FoldersVC */ = {
 			isa = PBXGroup;
 			children = (
+				DBD547E1241E872B00693BE5 /* FolderCell */,
 				DB1EE057238A82A500023145 /* FoldersVC.swift */,
 				DB1EE058238A82A500023145 /* FoldersVC.xib */,
 			);
@@ -257,6 +265,15 @@
 				DB1EE064238A82CC00023145 /* MoreVC.xib */,
 			);
 			path = MoreVC;
+			sourceTree = "<group>";
+		};
+		DBD547E1241E872B00693BE5 /* FolderCell */ = {
+			isa = PBXGroup;
+			children = (
+				DBD547E6241E89CF00693BE5 /* FolderCell.swift */,
+				DBD547E7241E89CF00693BE5 /* FolderCell.xib */,
+			);
+			path = FolderCell;
 			sourceTree = "<group>";
 		};
 		DBF3A473238A3A2300B4B6E5 = {
@@ -358,6 +375,7 @@
 				DB1EE066238A82CC00023145 /* MoreVC.xib in Resources */,
 				84067277238BD72A001B4C90 /* HistoryViewController.xib in Resources */,
 				8450777D2390F6AE00619A5F /* BrowserViewController.xib in Resources */,
+				DBD547E9241E89CF00693BE5 /* FolderCell.xib in Resources */,
 				84D45ED9238CBA4B000FD5CA /* HistoryTableViewCell.xib in Resources */,
 				844FFB10238B92AF00272744 /* DownloadTableViewCell.xib in Resources */,
 				DB1EE062238A82C000023145 /* DownloadsVC.xib in Resources */,
@@ -423,8 +441,10 @@
 				DB1EE059238A82A500023145 /* FoldersVC.swift in Sources */,
 				84D45EDB238CDCD6000FD5CA /* BaseViewController.swift in Sources */,
 				8459E7CA238D2EA60098010C /* NewTabTableViewCell.swift in Sources */,
+				DBD547EB241E8BBE00693BE5 /* UICollectionVIew+Extension.swift in Sources */,
 				DB1EE04F238A813700023145 /* HomeVC.swift in Sources */,
 				844FFB05238B689A00272744 /* SafariViewController.swift in Sources */,
+				DBD547E8241E89CF00693BE5 /* FolderCell.swift in Sources */,
 				84D45ED8238CBA4B000FD5CA /* HistoryTableViewCell.swift in Sources */,
 				8459E7C6238D2E0F0098010C /* UIView+Extension.swift in Sources */,
 				DB1EE061238A82C000023145 /* DownloadsVC.swift in Sources */,
@@ -572,7 +592,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DGFP28D4W6;
+				DEVELOPMENT_TEAM = SRSNPE33B8;
 				INFOPLIST_FILE = BrowserApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -591,7 +611,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DGFP28D4W6;
+				DEVELOPMENT_TEAM = SRSNPE33B8;
 				INFOPLIST_FILE = BrowserApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

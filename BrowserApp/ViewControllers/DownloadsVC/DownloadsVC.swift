@@ -209,10 +209,10 @@ extension DownloadsVC: URLSessionDownloadDelegate {
 // MARK: - UIDocumentInteractionControllerDelegate's Method
 
 extension DownloadsVC: UIDocumentInteractionControllerDelegate {
-
     func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
         return self
     }
+    
 }
 
 // MARK: - UITableViewDataSource's Method

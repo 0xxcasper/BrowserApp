@@ -7,5 +7,6 @@ target 'BrowserApp' do
 
   # Pods for BrowserApp
   pod 'RealmSwift'
+  pod 'Files'
 
 end

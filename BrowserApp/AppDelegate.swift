@@ -31,13 +31,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let moreVC = MoreVC()
         let navMore = UINavigationController(rootViewController: moreVC)
         
+        let folderVC = FoldersVC()
+        let navFolder = UINavigationController(rootViewController: folderVC)
         navHome.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 0)
         navBrowser.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 1)
         navDown.tabBarItem = UITabBarItem(tabBarSystemItem: .downloads, tag: 2)
         navMore.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 3)
-        
+        navFolder.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 4)
+
         let tabbar = UITabBarController()
-        tabbar.viewControllers = [ navHome, navBrowser, navDown, navMore ]
+        tabbar.viewControllers = [ navHome, navBrowser, navDown, navMore, navFolder]
         
         self.window?.rootViewController = tabbar
         self.window?.makeKeyAndVisible()
