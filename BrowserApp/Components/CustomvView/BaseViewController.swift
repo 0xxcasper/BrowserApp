@@ -14,10 +14,10 @@ class BaseViewController: UIViewController {
     private let searchController = UISearchController(searchResultsController: nil)
     
     private lazy var addBarButtonItem: UIBarButtonItem = {
-        return UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addDidClick))
+        return UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editDidClick))
     }()
     private lazy var editBarButtonItem: UIBarButtonItem = {
-        return UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editDidClick))
+        return UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addDidClick))
     }()
     
     override func viewDidLoad() {
@@ -28,12 +28,11 @@ class BaseViewController: UIViewController {
     }
     
     func addLeftBarButton() {
-        navigationItem.leftBarButtonItem = addBarButtonItem
+        navigationItem.rightBarButtonItem = editBarButtonItem
     }
     
     func addRightBarButton() {
-        navigationItem.rightBarButtonItem = editBarButtonItem
-
+        navigationItem.leftBarButtonItem = addBarButtonItem
     }
     
     func setUpSearchBar() {

@@ -37,6 +37,8 @@
 		DBD547E8241E89CF00693BE5 /* FolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD547E6241E89CF00693BE5 /* FolderCell.swift */; };
 		DBD547E9241E89CF00693BE5 /* FolderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBD547E7241E89CF00693BE5 /* FolderCell.xib */; };
 		DBD547EB241E8BBE00693BE5 /* UICollectionVIew+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD547EA241E8BBE00693BE5 /* UICollectionVIew+Extension.swift */; };
+		DBD547EF241FDA7300693BE5 /* FolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD547ED241FDA7300693BE5 /* FolderView.swift */; };
+		DBD547F0241FDA7300693BE5 /* FolderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBD547EE241FDA7300693BE5 /* FolderView.xib */; };
 		DBEDFC40238C301000297BF4 /* HistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBEDFC3F238C301000297BF4 /* HistoryModel.swift */; };
 		DBF3A480238A3A2300B4B6E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF3A47F238A3A2300B4B6E5 /* AppDelegate.swift */; };
 		DBF3A487238A3A2400B4B6E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBF3A486238A3A2400B4B6E5 /* Assets.xcassets */; };
@@ -75,6 +77,8 @@
 		DBD547E6241E89CF00693BE5 /* FolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCell.swift; sourceTree = "<group>"; };
 		DBD547E7241E89CF00693BE5 /* FolderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FolderCell.xib; sourceTree = "<group>"; };
 		DBD547EA241E8BBE00693BE5 /* UICollectionVIew+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionVIew+Extension.swift"; sourceTree = "<group>"; };
+		DBD547ED241FDA7300693BE5 /* FolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderView.swift; sourceTree = "<group>"; };
+		DBD547EE241FDA7300693BE5 /* FolderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FolderView.xib; sourceTree = "<group>"; };
 		DBEDFC3F238C301000297BF4 /* HistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryModel.swift; sourceTree = "<group>"; };
 		DBF3A47C238A3A2300B4B6E5 /* BrowserApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrowserApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBF3A47F238A3A2300B4B6E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -232,6 +236,7 @@
 		DB1EE053238A825E00023145 /* FoldersVC */ = {
 			isa = PBXGroup;
 			children = (
+				DBD547EC241FDA5800693BE5 /* FolderView */,
 				DBD547E1241E872B00693BE5 /* FolderCell */,
 				DB1EE057238A82A500023145 /* FoldersVC.swift */,
 				DB1EE058238A82A500023145 /* FoldersVC.xib */,
@@ -274,6 +279,15 @@
 				DBD547E7241E89CF00693BE5 /* FolderCell.xib */,
 			);
 			path = FolderCell;
+			sourceTree = "<group>";
+		};
+		DBD547EC241FDA5800693BE5 /* FolderView */ = {
+			isa = PBXGroup;
+			children = (
+				DBD547ED241FDA7300693BE5 /* FolderView.swift */,
+				DBD547EE241FDA7300693BE5 /* FolderView.xib */,
+			);
+			path = FolderView;
 			sourceTree = "<group>";
 		};
 		DBF3A473238A3A2300B4B6E5 = {
@@ -375,6 +389,7 @@
 				DB1EE066238A82CC00023145 /* MoreVC.xib in Resources */,
 				84067277238BD72A001B4C90 /* HistoryViewController.xib in Resources */,
 				8450777D2390F6AE00619A5F /* BrowserViewController.xib in Resources */,
+				DBD547F0241FDA7300693BE5 /* FolderView.xib in Resources */,
 				DBD547E9241E89CF00693BE5 /* FolderCell.xib in Resources */,
 				84D45ED9238CBA4B000FD5CA /* HistoryTableViewCell.xib in Resources */,
 				844FFB10238B92AF00272744 /* DownloadTableViewCell.xib in Resources */,
@@ -432,6 +447,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBD547EF241FDA7300693BE5 /* FolderView.swift in Sources */,
 				844FFB12238B961200272744 /* UITableView+Extension.swift in Sources */,
 				DBF3A480238A3A2300B4B6E5 /* AppDelegate.swift in Sources */,
 				844FFB0F238B92AF00272744 /* DownloadTableViewCell.swift in Sources */,

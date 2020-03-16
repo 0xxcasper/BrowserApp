@@ -8,6 +8,8 @@
 
 import UIKit
 import Files
+import AudioToolbox
+
 class FoldersVC: BaseViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
@@ -60,7 +62,9 @@ class FoldersVC: BaseViewController {
         let urls = FileManager.default.urls(for: .documentDirectory) ?? []
         var arr: [DownloadModel] = []
         for (index, value) in urls.enumerated() {
-            arr.append(DownloadModel(urlStr: value.absoluteString, name: value.lastPathComponent, progress: 1000, indexP: IndexPath(row: index, section: 1)))
+            if(!value.lastPathComponent.contains("realm")) {
+                arr.append(DownloadModel(urlStr: value.absoluteString, name: value.lastPathComponent, progress: 1000, indexP: IndexPath(row: index, section: 1)))
+            }
         }
         folderList = arr
     }
@@ -90,6 +94,7 @@ extension FoldersVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withClass: FolderCell.self, for: indexPath)
         cell.setupCell(item: folderList[indexPath.row])
+        cell.delegate = self
         return cell
     }
     
@@ -99,10 +104,6 @@ extension FoldersVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        openDocument(fileUrl: URL(string: folderList[indexPath.row].urlStr)!)
     }
     
     func openDocument(fileUrl: URL) {
@@ -116,6 +117,32 @@ extension FoldersVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
 extension FoldersVC: UIDocumentInteractionControllerDelegate {
     func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
         return self
+    }
+}
+
+extension FoldersVC: FolderCellDelegate {
+    func longPressCell(item: DownloadModel) {
+        let settingsActionSheet: UIAlertController = UIAlertController(title:nil, message:nil, preferredStyle:UIAlertController.Style.actionSheet)
+        settingsActionSheet.addAction(UIAlertAction(title:"Move", style:UIAlertAction.Style.default, handler:{ action in
+            
+        }))
+         
+        settingsActionSheet.addAction(UIAlertAction(title:"Delete", style:UIAlertAction.Style.destructive, handler:{ action in
+         
+        }))
+         
+        settingsActionSheet.addAction(UIAlertAction(title:"Cancel", style:UIAlertAction.Style.cancel, handler:nil))
+        present(settingsActionSheet, animated:true, completion:nil)
+    }
+    
+    func singleTapCell(item: DownloadModel) {
+        if(item.type == TypeFolder.Document) {
+            openDocument(fileUrl: URL(string: item.urlStr)!)
+            return
+        }
+        let vc = FolderView()
+        vc.item = item
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
