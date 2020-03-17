@@ -10,6 +10,7 @@ import UIKit
 import Files
 import AudioToolbox
 
+var fileMove: DownloadModel? = nil
 class FoldersVC: BaseViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
@@ -73,16 +74,18 @@ class FoldersVC: BaseViewController {
     func createFolder(name: String, success: @escaping (()->Void)) {
         let DocumentDirectory = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
         let DirPath = DocumentDirectory.appendingPathComponent(name)
-        do
-        {
-            try FileManager.default.createDirectory(atPath: DirPath!.path, withIntermediateDirectories: true, attributes: nil)
+        if !FileManager.default.fileExists(atPath: DirPath!.path) {
+            do
+            {
+                try FileManager.default.createDirectory(atPath: DirPath!.path, withIntermediateDirectories: true, attributes: nil)
+            }
+            catch let error as NSError
+            {
+                print("Unable to create directory \(error.debugDescription)")
+            }
+            print("Dir Path = \(DirPath!)")
+            success()
         }
-        catch let error as NSError
-        {
-            print("Unable to create directory \(error.debugDescription)")
-        }
-        print("Dir Path = \(DirPath!)")
-        success()
     }
 }
 
@@ -122,17 +125,16 @@ extension FoldersVC: UIDocumentInteractionControllerDelegate {
 
 extension FoldersVC: FolderCellDelegate {
     func longPressCell(item: DownloadModel) {
-        let settingsActionSheet: UIAlertController = UIAlertController(title:nil, message:nil, preferredStyle:UIAlertController.Style.actionSheet)
-        settingsActionSheet.addAction(UIAlertAction(title:"Move", style:UIAlertAction.Style.default, handler:{ action in
+        self.showActionSheet(item: item, successPaste: {
+            //Handle Pass File
             
-        }))
-         
-        settingsActionSheet.addAction(UIAlertAction(title:"Delete", style:UIAlertAction.Style.destructive, handler:{ action in
-         
-        }))
-         
-        settingsActionSheet.addAction(UIAlertAction(title:"Cancel", style:UIAlertAction.Style.cancel, handler:nil))
-        present(settingsActionSheet, animated:true, completion:nil)
+        }, successMoving: {
+            //Handle Moving File
+            
+        }) {
+            //Handle Delete File
+            self.fetchData()
+        }
     }
     
     func singleTapCell(item: DownloadModel) {

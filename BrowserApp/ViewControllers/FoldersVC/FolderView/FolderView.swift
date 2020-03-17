@@ -10,6 +10,7 @@ import UIKit
 import Files
 
 class FolderView: BaseViewController {
+    
     @IBOutlet weak var collectionView: UICollectionView!
     private var documentInteractionController: UIDocumentInteractionController?
 
@@ -56,16 +57,17 @@ class FolderView: BaseViewController {
         
         let downloadAction = UIAlertAction(title: "Create", style: .default) { (UIAlertAction) in
             let textField = alert.textFields![0]
-
             guard let name = textField.text else { return }
-            self.createFolder(name: name)
+            self.createFolder(name: name) {
+                self.fetchData()
+            }
         }
         alert.addAction(downloadAction)
         self.present(alert, animated: true, completion: nil)
     }
     
     
-    func createFolder(name: String) {
+    func createFolder(name: String, success: @escaping (()->Void)) {
         let stringPath = item.urlStr + name
         let url = URL(string: stringPath)
         if !FileManager.default.fileExists(atPath: url!.path) {
@@ -76,7 +78,7 @@ class FolderView: BaseViewController {
                   return
               }
          }
-        
+        success()
     }
 }
 
@@ -116,26 +118,19 @@ extension FolderView: UIDocumentInteractionControllerDelegate {
 
 extension FolderView: FolderCellDelegate {
     func longPressCell(item: DownloadModel) {
-//        let settingsActionSheet: UIAlertController = UIAlertController(title:nil, message:nil, preferredStyle:UIAlertController.Style.actionSheet)
-//        settingsActionSheet.addAction(UIAlertAction(title:"Move", style:UIAlertAction.Style.default, handler:{ action in
-//
-//        }))
-//
-//        settingsActionSheet.addAction(UIAlertAction(title:"Delete", style:UIAlertAction.Style.destructive, handler:{ action in
-//
-//        }))
-//
-//        settingsActionSheet.addAction(UIAlertAction(title:"Cancel", style:UIAlertAction.Style.cancel, handler:nil))
-//        present(settingsActionSheet, animated:true, completion:nil)
+        self.showActionSheet(item: item, hasDelete: true, successPaste: {
+        }, successMoving: {
+        }) {
+        }
     }
     
     func singleTapCell(item: DownloadModel) {
-//        if(item.type == TypeFolder.Document) {
-//            openDocument(fileUrl: URL(string: item.urlStr)!)
-//            return
-//        }
-//        let vc = FolderView()
-//        vc.item = item
-//        self.navigationController?.pushViewController(vc, animated: true)
+        if(item.type == TypeFolder.Document) {
+            openDocument(fileUrl: URL(string: item.urlStr)!)
+            return
+        }
+        let vc = FolderView()
+        vc.item = item
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
