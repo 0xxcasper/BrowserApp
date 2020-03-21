@@ -77,7 +77,12 @@ class FolderView: BaseViewController {
                   print(error.localizedDescription)
                   return
               }
-         }
+        } else {
+            let alert = UIAlertController(title: "File was existed", message: nil, preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "OK", style: .cancel)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+        }
         success()
     }
 }
@@ -118,10 +123,17 @@ extension FolderView: UIDocumentInteractionControllerDelegate {
 
 extension FolderView: FolderCellDelegate {
     func longPressCell(item: DownloadModel) {
-        self.showActionSheet(item: item, hasDelete: true, successPaste: {
+        self.showActionSheet(item: item, successPaste: {
+            //Handle Pass File
+            self.fetchData()
         }, successMoving: {
+            //Handle Moving File
+            self.fetchData()
         }) {
+            //Handle Delete File
+            self.fetchData()
         }
+
     }
     
     func singleTapCell(item: DownloadModel) {
