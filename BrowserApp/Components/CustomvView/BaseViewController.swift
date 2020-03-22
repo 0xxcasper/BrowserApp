@@ -53,7 +53,7 @@ class BaseViewController: UIViewController {
         
     }
     
-    func showActionSheet(item: DownloadModel, hasDelete: Bool = true, successPaste: @escaping (()->Void), successMoving: @escaping (()->Void), successDelete: @escaping (()->Void)) {
+    func showActionSheet(item: DownloadModel, hasDelete: Bool = true, success: @escaping (()->Void)) {
         let settingsActionSheet: UIAlertController = UIAlertController(title:nil, message:nil, preferredStyle:UIAlertController.Style.actionSheet)
         if(fileMove != nil) {
             settingsActionSheet.addAction(UIAlertAction(title:"Paste", style:UIAlertAction.Style.default, handler:{ action in
@@ -65,10 +65,30 @@ class BaseViewController: UIViewController {
                 } catch {
                     print("Ooops! Something went wrong: \(error)")
                 }
+                success()
             }))
         }
         settingsActionSheet.addAction(UIAlertAction(title:"Moving", style:UIAlertAction.Style.default, handler:{ action in
             fileMove = item
+            success()
+        }))
+
+        settingsActionSheet.addAction(UIAlertAction(title:"Rename", style:UIAlertAction.Style.default, handler:{ action in
+            self.showAlertRename { (name) in
+                let fileRename = URL(string: item.urlStr)!.path
+                let replaced =  item.urlStr.replacingOccurrences(of: item.urlStr.fileName(), with: name)
+
+                let fileNewName = URL(string: replaced)!.path
+                let fileManager = FileManager.default
+                do {
+                    try fileManager.moveItem(atPath: fileRename, toPath: fileNewName)
+                }
+                catch let error as NSError {
+                    print("Ooops! Something went wrong: \(error)")
+                }
+                fileMove = nil
+                success()
+            }
         }))
 
         //Delete
@@ -79,11 +99,29 @@ class BaseViewController: UIViewController {
             } catch {
                 print("\(error)")
             }
-            successDelete()
+            success()
         }))
 
         settingsActionSheet.addAction(UIAlertAction(title:"Cancel", style:UIAlertAction.Style.cancel, handler:nil))
         present(settingsActionSheet, animated:true, completion:nil)
+    }
+    
+    func showAlertRename(success: @escaping ((String)->Void)) {
+        let alert = UIAlertController(title: "Rename file", message: nil, preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.placeholder = "new name"
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alert.addAction(cancelAction)
+        
+        let downloadAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+            let textField = alert.textFields![0]
+            guard let name = textField.text else { return }
+            success(name)
+        }
+        alert.addAction(downloadAction)
+        self.present(alert, animated: true, completion: nil)
+
     }
 }
 

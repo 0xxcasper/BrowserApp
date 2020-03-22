@@ -123,17 +123,9 @@ extension FolderView: UIDocumentInteractionControllerDelegate {
 
 extension FolderView: FolderCellDelegate {
     func longPressCell(item: DownloadModel) {
-        self.showActionSheet(item: item, successPaste: {
-            //Handle Pass File
-            self.fetchData()
-        }, successMoving: {
-            //Handle Moving File
-            self.fetchData()
-        }) {
-            //Handle Delete File
+        self.showActionSheet(item: item) {
             self.fetchData()
         }
-
     }
     
     func singleTapCell(item: DownloadModel) {
