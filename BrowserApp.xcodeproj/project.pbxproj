@@ -23,6 +23,9 @@
 		8459E7C6238D2E0F0098010C /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8459E7C5238D2E0F0098010C /* UIView+Extension.swift */; };
 		8459E7CA238D2EA60098010C /* NewTabTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8459E7C8238D2EA60098010C /* NewTabTableViewCell.swift */; };
 		8459E7CB238D2EA60098010C /* NewTabTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8459E7C9238D2EA60098010C /* NewTabTableViewCell.xib */; };
+		84ABCC46243B6BB700C6BDD4 /* blockerList.json in Resources */ = {isa = PBXBuildFile; fileRef = 84ABCC45243B6BB700C6BDD4 /* blockerList.json */; };
+		84ABCC48243B6BB700C6BDD4 /* ContentBlockerRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ABCC47243B6BB700C6BDD4 /* ContentBlockerRequestHandler.swift */; };
+		84ABCC4C243B6BB700C6BDD4 /* BlockParty.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 84ABCC43243B6BB700C6BDD4 /* BlockParty.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		84D45ED8238CBA4B000FD5CA /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D45ED6238CBA4B000FD5CA /* HistoryTableViewCell.swift */; };
 		84D45ED9238CBA4B000FD5CA /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D45ED7238CBA4B000FD5CA /* HistoryTableViewCell.xib */; };
 		84D45EDB238CDCD6000FD5CA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D45EDA238CDCD6000FD5CA /* BaseViewController.swift */; };
@@ -45,6 +48,30 @@
 		DBF3A48A238A3A2400B4B6E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBF3A488238A3A2400B4B6E5 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		84ABCC4A243B6BB700C6BDD4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DBF3A474238A3A2300B4B6E5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 84ABCC42243B6BB700C6BDD4;
+			remoteInfo = BlockParty;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		84ABCC4D243B6BB700C6BDD4 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				84ABCC4C243B6BB700C6BDD4 /* BlockParty.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		4774EB362AAA22477E188FBB /* Pods_BrowserApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BrowserApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84067274238BD72A001B4C90 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +89,10 @@
 		8459E7C5238D2E0F0098010C /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		8459E7C8238D2EA60098010C /* NewTabTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTabTableViewCell.swift; sourceTree = "<group>"; };
 		8459E7C9238D2EA60098010C /* NewTabTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewTabTableViewCell.xib; sourceTree = "<group>"; };
+		84ABCC43243B6BB700C6BDD4 /* BlockParty.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BlockParty.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		84ABCC45243B6BB700C6BDD4 /* blockerList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = blockerList.json; sourceTree = "<group>"; };
+		84ABCC47243B6BB700C6BDD4 /* ContentBlockerRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentBlockerRequestHandler.swift; sourceTree = "<group>"; };
+		84ABCC49243B6BB700C6BDD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84D45ED6238CBA4B000FD5CA /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		84D45ED7238CBA4B000FD5CA /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
 		84D45EDA238CDCD6000FD5CA /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +120,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		84ABCC40243B6BB700C6BDD4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DBF3A479238A3A2300B4B6E5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -193,6 +231,16 @@
 			path = TabCell;
 			sourceTree = "<group>";
 		};
+		84ABCC44243B6BB700C6BDD4 /* BlockParty */ = {
+			isa = PBXGroup;
+			children = (
+				84ABCC45243B6BB700C6BDD4 /* blockerList.json */,
+				84ABCC47243B6BB700C6BDD4 /* ContentBlockerRequestHandler.swift */,
+				84ABCC49243B6BB700C6BDD4 /* Info.plist */,
+			);
+			path = BlockParty;
+			sourceTree = "<group>";
+		};
 		84D45ED5238CBA37000FD5CA /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -294,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				DBF3A47E238A3A2300B4B6E5 /* BrowserApp */,
+				84ABCC44243B6BB700C6BDD4 /* BlockParty */,
 				DBF3A47D238A3A2300B4B6E5 /* Products */,
 				BC6AB5A2CBDEF60282F1BA15 /* Pods */,
 				28FC965C9E1002899F9B440E /* Frameworks */,
@@ -304,6 +353,7 @@
 			isa = PBXGroup;
 			children = (
 				DBF3A47C238A3A2300B4B6E5 /* BrowserApp.app */,
+				84ABCC43243B6BB700C6BDD4 /* BlockParty.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -325,6 +375,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		84ABCC42243B6BB700C6BDD4 /* BlockParty */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84ABCC50243B6BB700C6BDD4 /* Build configuration list for PBXNativeTarget "BlockParty" */;
+			buildPhases = (
+				84ABCC3F243B6BB700C6BDD4 /* Sources */,
+				84ABCC40243B6BB700C6BDD4 /* Frameworks */,
+				84ABCC41243B6BB700C6BDD4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BlockParty;
+			productName = BlockParty;
+			productReference = 84ABCC43243B6BB700C6BDD4 /* BlockParty.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		DBF3A47B238A3A2300B4B6E5 /* BrowserApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DBF3A48E238A3A2400B4B6E5 /* Build configuration list for PBXNativeTarget "BrowserApp" */;
@@ -334,10 +401,12 @@
 				DBF3A479238A3A2300B4B6E5 /* Frameworks */,
 				DBF3A47A238A3A2300B4B6E5 /* Resources */,
 				3C1DAA16C450DFE635AE2EB3 /* [CP] Embed Pods Frameworks */,
+				84ABCC4D243B6BB700C6BDD4 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				84ABCC4B243B6BB700C6BDD4 /* PBXTargetDependency */,
 			);
 			name = BrowserApp;
 			productName = BrowserApp;
@@ -350,10 +419,13 @@
 		DBF3A474238A3A2300B4B6E5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1030;
+				LastSwiftUpdateCheck = 1130;
 				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = "nxsang063@gmail.com";
 				TargetAttributes = {
+					84ABCC42243B6BB700C6BDD4 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
 					DBF3A47B238A3A2300B4B6E5 = {
 						CreatedOnToolsVersion = 10.3;
 					};
@@ -373,11 +445,20 @@
 			projectRoot = "";
 			targets = (
 				DBF3A47B238A3A2300B4B6E5 /* BrowserApp */,
+				84ABCC42243B6BB700C6BDD4 /* BlockParty */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		84ABCC41243B6BB700C6BDD4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84ABCC46243B6BB700C6BDD4 /* blockerList.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DBF3A47A238A3A2300B4B6E5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -443,6 +524,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		84ABCC3F243B6BB700C6BDD4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84ABCC48243B6BB700C6BDD4 /* ContentBlockerRequestHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DBF3A478238A3A2300B4B6E5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -474,6 +563,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		84ABCC4B243B6BB700C6BDD4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 84ABCC42243B6BB700C6BDD4 /* BlockParty */;
+			targetProxy = 84ABCC4A243B6BB700C6BDD4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		DBF3A488238A3A2400B4B6E5 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -486,6 +583,52 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		84ABCC4E243B6BB700C6BDD4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DGFP28D4W6;
+				INFOPLIST_FILE = BlockParty/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = SangNX.BrowserApp.BlockParty;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		84ABCC4F243B6BB700C6BDD4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DGFP28D4W6;
+				INFOPLIST_FILE = BlockParty/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = SangNX.BrowserApp.BlockParty;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		DBF3A48C238A3A2400B4B6E5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -606,9 +749,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF46912893A869477C7304D2 /* Pods-BrowserApp.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SRSNPE33B8;
+				DEVELOPMENT_TEAM = DGFP28D4W6;
 				INFOPLIST_FILE = BrowserApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -625,9 +769,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B4CD9743CAC65831D2193066 /* Pods-BrowserApp.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SRSNPE33B8;
+				DEVELOPMENT_TEAM = DGFP28D4W6;
 				INFOPLIST_FILE = BrowserApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -643,6 +788,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		84ABCC50243B6BB700C6BDD4 /* Build configuration list for PBXNativeTarget "BlockParty" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84ABCC4E243B6BB700C6BDD4 /* Debug */,
+				84ABCC4F243B6BB700C6BDD4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		DBF3A477238A3A2300B4B6E5 /* Build configuration list for PBXProject "BrowserApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
