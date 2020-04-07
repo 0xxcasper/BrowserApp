@@ -7,4 +7,13 @@
             "url-filter": "webkit.svg"
         }
     }
+    {
+        "action": {
+            "type": "css-display-none",
+            "selector": "#home-icon"
+        },
+        "trigger": {
+            "url-filter": ".*"
+        }
+    }
 ]
