@@ -34,13 +34,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let folderVC = FoldersVC()
         let navFolder = UINavigationController(rootViewController: folderVC)
         navHome.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 0)
-        navBrowser.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 1)
+        navBrowser.tabBarItem = UITabBarItem(title: "Browser", image: #imageLiteral(resourceName: "ic_browser.png"), tag: 1)
         navDown.tabBarItem = UITabBarItem(tabBarSystemItem: .downloads, tag: 2)
-        navMore.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 3)
-        navFolder.tabBarItem = UITabBarItem(tabBarSystemItem: .recents, tag: 4)
+        navFolder.tabBarItem = UITabBarItem(title: "Folder", image: #imageLiteral(resourceName: "ic_folder"), tag: 3)
+        navMore.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 4)
 
         let tabbar = UITabBarController()
-        tabbar.viewControllers = [ navHome, navBrowser, navDown, navMore, navFolder]
+        tabbar.viewControllers = [ navHome, navBrowser, navDown, navFolder, navMore]
         
         self.window?.rootViewController = tabbar
         self.window?.makeKeyAndVisible()
